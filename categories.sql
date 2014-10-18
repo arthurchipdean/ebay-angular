@@ -1,0 +1,1 @@
+CREATE TABLE `ebay`.`categories`( `id` INT(11) NOT NULL, `name` VARCHAR(150), PRIMARY KEY (`id`) );

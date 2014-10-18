@@ -1,0 +1,68 @@
+<form ng-submit="search(query,sort)" class="form form-inline">
+    <div class="row">
+        <label for="q">Query:</label>
+        <input id="q" type="text" ng-model="query" class="form-control" placeholder="Search Term" required/>
+        <label for="sort">Sort By:</label>
+        <select ng-model="sort" id="sort" class="form-control">
+            <option value="BestMatch">Best Match</option>
+            <option value="PricePlusShippingHighest">Highest Price</option>
+            <option value="PricePlusShippingLowest">Lowest Price</option>
+            <option value="EndTimeSoonest">End Time Soonest</option>
+            <option value="StartTimeNewest">Start Time Newest</option>
+        </select>
+        <select class="form-control" ng-model="category">
+            <option value="-1">All Categories</option>
+            <option ng-repeat="category in categories" value="{{category.id}}">
+                {{category.name}}
+            </option>
+        </select>
+        <select class="form-control" ng-model="saved_search">
+            <option ng-repeat="search in saved_searches" value="{{search.id}}">{{search.name}}</option>
+        </select>
+        <label for="freeShipping">Free Shipping</label>
+        <input type="checkbox" ng-model="freeShipping" id="freeShipping" />
+        <button ng-click="search()"> <i class="fa fa-search"></i></button>
+        <button ng-click="search_name = !search_name" title="Save Search"> <i class="fa fa-save"></i></button>
+        <br>
+        <a ng-click="advanced_search = !advanced_search">Advanced Search Settings</a>
+    </div>
+    <div class="row" ng-show="advanced_search">
+        <label for="MaxBid">Minimum Bids</label><input type="number" ng-model="MinBid" id="MinBid"/>
+        <label for="MaxBid">Maximum Bids</label><input type="number" ng-model="MaxBid" id="MaxBid"/>
+        <label for="MaxPrice">Minimum Prices</label><input type="number" ng-model="MinPrice" id="MinPrice"/>
+        <label for="MaxPrice">Maximum Prices</label><input type="number" ng-model="MaxPrice" id="MaxPrice"/>
+    </div>
+    <div class="row" ng-show="search_name">
+        <label for="name">Search Name</label><input type="text" ng-model="name" id="name"/>
+        <a ng-click="save_search()" class="btn btn-default">Save</a>
+    </div>
+</form>
+<hr class="col-md-12">
+<ul class="list-unstyled" class="animated fadeIn">
+    <li class="search-result" dir-paginate="item in items | itemsPerPage: 100" total-items="count">
+        <div class="col-md-2">
+            <img ng-src="{{item.image}}" class="img-responsive pull-left" />
+        </div>
+        <div class="col-md-6">
+            <a href="{{item.url}}">{{item.title}}</a>
+            <br>
+            <small ng-show="item.subtitle">
+                {{item.subtitle}}<br>
+            </small>
+            <b>{{item.currency|currency}}{{item.value}}</b>
+            <span class="pull-right">  {{item.remaining}}</span>
+            <br>
+            <small ng-show="item.buyItPrice">
+                {{item.buyItPrice}} <br>
+            </small>
+            <b class="small">{{item.shipping}} shipping</b>
+
+            <br>
+
+            <span ng-bind-html="item.topRated|rated"></span>
+
+        </div>
+        <div class="clearfix"></div>
+    </li>
+</ul>
+<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>

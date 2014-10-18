@@ -1,0 +1,21 @@
+{
+    "name": "vendor_name/package_name",
+    "description": "description_text",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "author's name",
+            "email": "email@example.com"
+        }
+    ],
+    "require": {
+        "dts/ebay-sdk": "0.1.2",
+        "dts/ebay-sdk-shopping": "0.3.0",
+        "dts/ebay-sdk-finding": "0.1.3"
+    },
+    "autoload": {
+        "files": [
+            "conf.php"
+        ]
+    }
+}
