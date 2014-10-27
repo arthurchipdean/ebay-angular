@@ -1,7 +1,8 @@
 {
-    "name": "vendor_name/package_name",
-    "description": "description_text",
+    "name": "spire/ebay-angular",
+    "description": "Ebay Scraper",
     "minimum-stability": "stable",
+    "license":"GPL",
     "authors": [
         {
             "name": "author's name",
