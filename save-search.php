@@ -23,6 +23,4 @@ else {
     $stmt = $pdo->prepare("SELECT * FROM saved_search_settings");
     $stmt->execute();
     echo json_encode(array('saved_searches' => $stmt->fetchAll()));
-    exit();
-
 }
